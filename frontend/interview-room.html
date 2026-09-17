@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>InterviewIQ | AI Interview Room</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top left, #172554, transparent 35%),
+                radial-gradient(circle at bottom right, #312e81, transparent 35%),
+                #020617;
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+            background: rgba(2,6,23,.8);
+            backdrop-filter: blur(15px);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: .5px;
+        }
+
+        .logo span {
+            color: #818cf8;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 12px #22c55e;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: 45px auto;
+        }
+
+        .hero {
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            color: #94a3b8;
+        }
+
+        .card {
+            background: rgba(15,23,42,.88);
+            border: 1px solid rgba(148,163,184,.13);
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.25);
+        }
+
+        .question-label {
+            color: #818cf8;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .question {
+            font-size: 25px;
+            line-height: 1.45;
+            margin-bottom: 25px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 180px;
+            resize: vertical;
+            border: 1px solid #334155;
+            border-radius: 15px;
+            background: #020617;
+            color: white;
+            padding: 18px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #818cf8;
+            box-shadow: 0 0 0 3px rgba(129,140,248,.1);
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+            gap: 12px;
+        }
+
+        button {
+            border: none;
+            border-radius: 12px;
+            padding: 13px 23px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .primary {
+            background: linear-gradient(135deg,#6366f1,#8b5cf6);
+            color: white;
+        }
+
+        .primary:hover {
+            transform: translateY(-1px);
+        }
+
+        .secondary {
+            background: #1e293b;
+            color: #cbd5e1;
+        }
+
+        .progress {
+            height: 7px;
+            background: #1e293b;
+            border-radius: 20px;
+            margin: 25px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 20%;
+            background: linear-gradient(90deg,#6366f1,#a78bfa);
+            transition: width .3s;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 35px;
+        }
+
+        .spinner {
+            width: 42px;
+            height: 42px;
+            border: 4px solid #334155;
+            border-top-color: #818cf8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: auto auto 15px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .result {
+            display: none;
+        }
+
+        .score {
+            font-size: 72px;
+            font-weight: 900;
+            text-align: center;
+            margin: 20px 0;
+            background: linear-gradient(135deg,#818cf8,#c084fc);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .score-label {
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .metric {
+            background: #020617;
+            border: 1px solid #1e293b;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 27px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .metric-name {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        @media(max-width:700px) {
+            .metrics {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .question {
+                font-size: 20px;
+            }
+
+            .topbar {
+                padding: 0 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="logo">
+        Interview<span>IQ</span>
+    </div>
+
+    <div class="status">
+        <span class="dot"></span>
+        AI Engine Online
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <div class="hero">
+
+        <h1>AI Interview Room</h1>
+
+        <p>
+            Answer naturally. InterviewIQ will analyze your response
+            and generate your performance report.
+        </p>
+
+    </div>
+
+
+    <section class="card" id="questionCard">
+
+        <div class="question-label">
+            Question <span id="questionNumber">1</span> of 5
+        </div>
+
+        <div class="question" id="question">
+            Tell me about yourself and your technical background.
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <textarea
+            id="answer"
+            placeholder="Type your answer here..."
+        ></textarea>
+
+        <div class="actions">
+
+            <button
+                class="secondary"
+                onclick="skipQuestion()"
+            >
+                Skip
+            </button>
+
+            <button
+                class="primary"
+                onclick="submitAnswer()"
+                id="submitBtn"
+            >
+                Analyze Answer →
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section class="card loading" id="loading">
+
+        <div class="spinner"></div>
+
+        <h2>AI is analyzing your answer...</h2>
+
+        <p class="message">
+            Evaluating technical knowledge, communication,
+            problem solving and confidence.
+        </p>
+
+    </section>
+
+
+    <section class="card result" id="result">
+
+        <div class="question-label">
+            Interview Complete
+        </div>
+
+        <h1 style="text-align:center;">
+            Your AI Performance Report
+        </h1>
+
+        <div class="score" id="overallScore">
+            0
+        </div>
+
+        <div class="score-label">
+            Overall Score
+        </div>
+
+        <div class="metrics">
+
+            <div class="metric">
+
+                <div
+                    class="metric-value"
+                    id="technicalScore"
+                >
+                    0
+                </div>
+
+                <div class="metric-name">
+                    Technical
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div
+                    class="metric-value"
+                    id="communicationScore"
+                >
+                    0
+                </div>
+
+                <div class="metric-name">
+                    Communication
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div
+                    class="metric-value"
+                    id="problemScore"
+                >
+                    0
+                </div>
+
+                <div class="metric-name">
+                    Problem Solving
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div
+                    class="metric-value"
+                    id="confidenceScore"
+                >
+                    0
+                </div>
+
+                <div class="metric-name">
+                    Confidence
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <p
+            class="message"
+            id="performanceMessage"
+        ></p>
+
+
+        <div class="actions">
+
+            <button
+                class="secondary"
+                onclick="window.location.href='/dashboard.html'"
+            >
+                Dashboard
+            </button>
+
+            <button
+                class="primary"
+                onclick="window.location.href='/interview.html'"
+            >
+                New Interview
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+const API = "";
+
+
+// ==========================================================
+// INTERVIEW DATA
+// ==========================================================
+
+const questions = [
+
+    "Tell me about yourself and your technical background.",
+
+    "Explain one technical project you have worked on.",
+
+    "How would you debug a software application that is running slowly?",
+
+    "Tell me about a difficult problem you solved.",
+
+    "Why should we hire you for this role?"
+
+];
+
+
+let currentQuestion = 0;
+
+let results = [];
+
+
+// ==========================================================
+// LOAD USER
+// ==========================================================
+
+function getUser() {
+
+    try {
+
+        const stored =
+            localStorage.getItem("user");
+
+        if (stored) {
+
+            return JSON.parse(stored);
+
+        }
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
+    return {
+        id: 1,
+        full_name: "Demo User",
+        email: "demo@interviewiq.com"
+    };
+}
+
+
+// ==========================================================
+// DISPLAY QUESTION
+// ==========================================================
+
+function displayQuestion() {
+
+    document.getElementById(
+        "questionNumber"
+    ).textContent = currentQuestion + 1;
+
+    document.getElementById(
+        "question"
+    ).textContent = questions[currentQuestion];
+
+    document.getElementById(
+        "answer"
+    ).value = "";
+
+    const progress =
+        ((currentQuestion + 1) / questions.length) * 100;
+
+    document.getElementById(
+        "progressBar"
+    ).style.width = progress + "%";
+
+}
+
+
+// ==========================================================
+// SUBMIT ANSWER
+// ==========================================================
+
+async function submitAnswer() {
+
+    const answer =
+        document.getElementById("answer").value.trim();
+
+    if (!answer) {
+
+        alert("Please enter your answer first.");
+
+        return;
+
+    }
+
+    const button =
+        document.getElementById("submitBtn");
+
+    button.disabled = true;
+
+    document.getElementById(
+        "questionCard"
+    ).style.display = "none";
+
+    document.getElementById(
+        "loading"
+    ).style.display = "block";
+
+
+    try {
+
+        const response =
+            await fetch(
+                API + "/api/interview/evaluate",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        question:
+                            questions[currentQuestion],
+
+                        answer: answer,
+
+                        interview_type:
+                            "Technical",
+
+                        role:
+                            "Software Developer"
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.detail ||
+                "Evaluation failed."
+            );
+
+        }
+
+
+        results.push(
+            normalizeResult(
+                data.result
+            )
+        );
+
+
+        currentQuestion++;
+
+
+        if (
+            currentQuestion <
+            questions.length
+        ) {
+
+            document.getElementById(
+                "loading"
+            ).style.display = "none";
+
+            document.getElementById(
+                "questionCard"
+            ).style.display = "block";
+
+            button.disabled = false;
+
+            displayQuestion();
+
+        } else {
+
+            finishInterview();
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "AI evaluation failed: " +
+            error.message
+        );
+
+        document.getElementById(
+            "loading"
+        ).style.display = "none";
+
+        document.getElementById(
+            "questionCard"
+        ).style.display = "block";
+
+        button.disabled = false;
+
+    }
+
+}
+
+
+// ==========================================================
+// NORMALIZE AI RESULT
+// ==========================================================
+
+function normalizeResult(result) {
+
+    result = result || {};
+
+    return {
+
+        overall:
+            Number(
+                result.overall_score ??
+                result.overall ??
+                result.score ??
+                0
+            ),
+
+        technical:
+            Number(
+                result.technical_score ??
+                result.technical ??
+                0
+            ),
+
+        communication:
+            Number(
+                result.communication_score ??
+                result.communication ??
+                0
+            ),
+
+        problem:
+            Number(
+                result.problem_solving_score ??
+                result.problem_solving ??
+                0
+            ),
+
+        confidence:
+            Number(
+                result.confidence_score ??
+                result.confidence ??
+                0
+            )
+
+    };
+
+}
+
+
+// ==========================================================
+// SKIP QUESTION
+// ==========================================================
+
+function skipQuestion() {
+
+    results.push({
+
+        overall: 0,
+        technical: 0,
+        communication: 0,
+        problem: 0,
+        confidence: 0
+
+    });
+
+    currentQuestion++;
+
+    if (
+        currentQuestion >=
+        questions.length
+    ) {
+
+        finishInterview();
+
+        return;
+
+    }
+
+    displayQuestion();
+
+}
+
+
+// ==========================================================
+// CALCULATE FINAL SCORE
+// ==========================================================
+
+function calculateAverage(key) {
+
+    if (!results.length) {
+
+        return 0;
+
+    }
+
+    const total =
+        results.reduce(
+            (sum, item) =>
+                sum + Number(item[key] || 0),
+            0
+        );
+
+    return Math.round(
+        total / results.length
+    );
+
+}
+
+
+// ==========================================================
+// FINISH INTERVIEW
+// ==========================================================
+
+async function finishInterview() {
+
+    const overall =
+        calculateAverage("overall");
+
+    const technical =
+        calculateAverage("technical");
+
+    const communication =
+        calculateAverage("communication");
+
+    const problem =
+        calculateAverage("problem");
+
+    const confidence =
+        calculateAverage("confidence");
+
+
+    document.getElementById(
+        "loading"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "result"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "overallScore"
+    ).textContent = overall;
+
+
+    document.getElementById(
+        "technicalScore"
+    ).textContent = technical;
+
+
+    document.getElementById(
+        "communicationScore"
+    ).textContent = communication;
+
+
+    document.getElementById(
+        "problemScore"
+    ).textContent = problem;
+
+
+    document.getElementById(
+        "confidenceScore"
+    ).textContent = confidence;
+
+
+    let performance =
+        "Needs Improvement";
+
+
+    if (overall >= 80) {
+
+        performance = "Excellent";
+
+    } else if (overall >= 70) {
+
+        performance = "Strong";
+
+    } else if (overall >= 60) {
+
+        performance = "Good";
+
+    } else if (overall >= 50) {
+
+        performance = "Average";
+
+    }
+
+
+    document.getElementById(
+        "performanceMessage"
+    ).textContent =
+        "Performance Level: " +
+        performance;
+
+
+    // ------------------------------------------------------
+    // SAVE RESULT TO BACKEND
+    // ------------------------------------------------------
+
+    await saveInterview(
+        overall,
+        technical,
+        communication,
+        problem,
+        confidence,
+        performance
+    );
+
+}
+
+
+// ==========================================================
+// SAVE INTERVIEW
+// ==========================================================
+
+async function saveInterview(
+    overall,
+    technical,
+    communication,
+    problem,
+    confidence,
+    performance
+) {
+
+    const user = getUser();
+
+
+    const payload = {
+
+        user_id:
+            Number(user.id || 1),
+
+        interview_type:
+            "Technical",
+
+        role:
+            "Software Developer",
+
+        experience_level:
+            "Fresher",
+
+        difficulty:
+            "Medium",
+
+        mode:
+            "Text",
+
+        total_questions:
+            questions.length,
+
+        answered_questions:
+            results.filter(
+                item => item.overall > 0
+            ).length,
+
+        overall_score:
+            overall,
+
+        technical_score:
+            technical,
+
+        communication_score:
+            communication,
+
+        problem_solving_score:
+            problem,
+
+        confidence_score:
+            confidence,
+
+        performance_level:
+            performance,
+
+        summary:
+            "AI-generated interview performance report."
+
+    };
+
+
+    try {
+
+        const response =
+            await fetch(
+                API + "/api/interview/save",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(payload)
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            console.error(
+                "Save failed:",
+                data
+            );
+
+            return;
+
+        }
+
+
+        console.log(
+            "Interview saved:",
+            data
+        );
+
+
+        localStorage.setItem(
+            "lastInterview",
+            JSON.stringify(
+                data.interview
+            )
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Database save error:",
+            error
+        );
+
+    }
+
+}
+
+
+// ==========================================================
+// INITIALIZE
+// ==========================================================
+
+displayQuestion();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interview Setup | InterviewIQ</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #080a12;
+            --panel: #10131f;
+            --panel-2: #151928;
+            --border: rgba(255,255,255,0.08);
+            --text: #f7f7fb;
+            --muted: #858ca3;
+            --purple: #7664ff;
+            --purple-2: #624ce6;
+            --green: #35e6a3;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 80% 10%,
+                    rgba(118,100,255,0.16),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 10% 90%,
+                    rgba(118,100,255,0.09),
+                    transparent 28%
+                ),
+                var(--bg);
+
+            color: var(--text);
+            font-family:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        .page {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 34px 0 60px;
+        }
+
+        /* TOP BAR */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 34px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .brand-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 13px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: 900;
+            font-size: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7865ff,
+                    #5541d9
+                );
+
+            box-shadow:
+                0 12px 35px rgba(118,100,255,0.3);
+        }
+
+        .brand-title {
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .brand-subtitle {
+            color: #686f86;
+            font-size: 8px;
+            letter-spacing: 1.2px;
+            margin-top: 3px;
+            font-weight: 700;
+        }
+
+        .secure {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            color: #737a91;
+            font-size: 12px;
+        }
+
+        .secure-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 12px rgba(53,230,163,0.7);
+        }
+
+        /* HEADER */
+
+        .header {
+            margin-bottom: 28px;
+        }
+
+        .eyebrow {
+            color: #8d81ff;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.05;
+            letter-spacing: -1.8px;
+        }
+
+        h1 span {
+            color: #7865ff;
+        }
+
+        .header p {
+            color: var(--muted);
+            margin-top: 12px;
+            font-size: 14px;
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        /* MAIN GRID */
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 330px;
+            gap: 22px;
+            align-items: start;
+        }
+
+        .card {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(22,25,40,0.96),
+                    rgba(12,14,23,0.96)
+                );
+
+            border: 1px solid var(--border);
+            border-radius: 20px;
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.25);
+        }
+
+        .setup-card {
+            padding: 28px;
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .card-description {
+            color: #747b92;
+            font-size: 12px;
+            margin-bottom: 26px;
+        }
+
+        /* SECTION */
+
+        .section {
+            margin-bottom: 28px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 800;
+            color: #9ba2b9;
+            text-transform: uppercase;
+            letter-spacing: 1.1px;
+            margin-bottom: 12px;
+        }
+
+        /* OPTIONS */
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .options.four {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .option {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .option input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .option-box {
+            min-height: 78px;
+
+            padding: 14px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.07);
+
+            border-radius: 13px;
+
+            transition:
+                0.2s ease;
+        }
+
+        .option-box:hover {
+            border-color: rgba(118,100,255,0.45);
+            background: rgba(118,100,255,0.06);
+            transform: translateY(-1px);
+        }
+
+        .option input:checked + .option-box {
+            border-color: #7563ff;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(118,100,255,0.17),
+                    rgba(98,76,230,0.06)
+                );
+
+            box-shadow:
+                inset 0 0 0 1px rgba(118,100,255,0.12),
+                0 10px 30px rgba(118,100,255,0.08);
+        }
+
+        .option-icon {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .option-name {
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .option-desc {
+            color: #666d84;
+            font-size: 9px;
+            margin-top: 4px;
+        }
+
+        /* ROLE */
+
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        /* BUTTON */
+
+        .start-button {
+            width: 100%;
+            border: 0;
+            border-radius: 12px;
+
+            padding: 16px;
+
+            margin-top: 28px;
+
+            color: white;
+            font-weight: 800;
+            font-size: 13px;
+
+            cursor: pointer;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7967ff,
+                    #5d49dc
+                );
+
+            box-shadow:
+                0 15px 35px rgba(103,82,230,0.28);
+
+            transition: 0.2s ease;
+        }
+
+        .start-button:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 18px 45px rgba(103,82,230,0.4);
+        }
+
+        .start-button:active {
+            transform: translateY(0);
+        }
+
+        /* SUMMARY */
+
+        .summary {
+            padding: 24px;
+            position: sticky;
+            top: 24px;
+        }
+
+        .summary-label {
+            color: #8e84ff;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.7px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .summary h2 {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        .summary-text {
+            color: #747b91;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .summary-list {
+            margin-top: 22px;
+        }
+
+        .summary-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 13px 0;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.055);
+        }
+
+        .summary-row:last-child {
+            border-bottom: 0;
+        }
+
+        .summary-key {
+            color: #72798f;
+            font-size: 11px;
+        }
+
+        .summary-value {
+            font-size: 11px;
+            font-weight: 800;
+            color: #e8e8f0;
+            text-align: right;
+        }
+
+        /* AI BOX */
+
+        .ai-box {
+            margin-top: 20px;
+            padding: 15px;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(118,100,255,0.11),
+                    rgba(118,100,255,0.025)
+                );
+
+            border:
+                1px solid rgba(118,100,255,0.18);
+        }
+
+        .ai-box-title {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .ai-box p {
+            color: #777e94;
+            font-size: 10px;
+            line-height: 1.6;
+            margin-top: 7px;
+        }
+
+        /* BACK */
+
+        .back-button {
+            border: 0;
+            background: transparent;
+            color: #777e95;
+            cursor: pointer;
+            font-size: 11px;
+            margin-top: 18px;
+        }
+
+        .back-button:hover {
+            color: white;
+        }
+
+        /* TOAST */
+
+        .toast {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+
+            padding: 13px 17px;
+
+            background: #191d2c;
+            border: 1px solid rgba(118,100,255,0.35);
+            border-radius: 11px;
+
+            color: #dfe1eb;
+            font-size: 11px;
+
+            box-shadow:
+                0 15px 45px rgba(0,0,0,0.35);
+
+            opacity: 0;
+            transform: translateY(12px);
+
+            pointer-events: none;
+
+            transition: 0.25s ease;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .summary {
+                position: static;
+            }
+
+            .role-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .options.four {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .page {
+                width: min(100% - 24px, 1180px);
+                padding-top: 20px;
+            }
+
+            .topbar {
+                margin-bottom: 24px;
+            }
+
+            .secure {
+                display: none;
+            }
+
+            .setup-card,
+            .summary {
+                padding: 20px;
+            }
+
+            .options,
+            .role-grid,
+            .options.four {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                AI
+            </div>
+
+            <div>
+                <div class="brand-title">
+                    InterviewIQ
+                </div>
+
+                <div class="brand-subtitle">
+                    SMART INTERVIEW ANALYZER
+                </div>
+            </div>
+
+        </div>
+
+        <div class="secure">
+            <span class="secure-dot"></span>
+            AI ENGINE READY
+        </div>
+
+    </div>
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="eyebrow">
+            Interview configuration
+        </div>
+
+        <h1>
+            Build your <span>AI interview.</span>
+        </h1>
+
+        <p>
+            Configure a personalized interview session. InterviewIQ
+            will adapt the questions, difficulty and evaluation to your
+            selected role and experience level.
+        </p>
+
+    </div>
+
+
+    <!-- CONTENT -->
+
+    <div class="layout">
+
+        <!-- SETUP -->
+
+        <div class="card setup-card">
+
+            <div class="card-title">
+                Interview Setup
+            </div>
+
+            <div class="card-description">
+                Choose how you want your interview to run.
+            </div>
+
+
+            <!-- INTERVIEW TYPE -->
+
+            <div class="section">
+
+                <div class="section-label">
+                    Interview type
+                </div>
+
+                <div class="options">
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="type"
+                            value="Technical"
+                            checked
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-icon">
+                                💻
+                            </div>
+
+                            <div class="option-name">
+                                Technical
+                            </div>
+
+                            <div class="option-desc">
+                                Technical knowledge
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="type"
+                            value="HR / Behavioral"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-icon">
+                                🧠
+                            </div>
+
+                            <div class="option-name">
+                                HR / Behavioral
+                            </div>
+
+                            <div class="option-desc">
+                                Communication & behavior
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="type"
+                            value="Mixed"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-icon">
+                                ✦
+                            </div>
+
+                            <div class="option-name">
+                                Mixed
+                            </div>
+
+                            <div class="option-desc">
+                                Complete interview
+                            </div>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- JOB ROLE -->
+
+            <div class="section">
+
+                <div class="section-label">
+                    Target job role
+                </div>
+
+                <div class="role-grid">
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="role"
+                            value="Software Developer"
+                            checked
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-icon">
+                                ⌘
+                            </div>
+
+                            <div class="option-name">
+                                Software Developer
+                            </div>
+
+                            <div class="option-desc">
+                                Programming & systems
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="role"
+                            value="Full Stack Developer"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-icon">
+                                ◈
+                            </div>
+
+                            <div class="option-name">
+                                Full Stack
+                            </div>
+
+                            <div class="option-desc">
+                                Frontend + backend
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="role"
+                            value="AI / ML Engineer"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-icon">
+                                ✧
+                            </div>
+
+                            <div class="option-name">
+                                AI / ML Engineer
+                            </div>
+
+                            <div class="option-desc">
+                                AI & machine learning
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="role"
+                            value="Data Scientist"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-icon">
+                                ◫
+                            </div>
+
+                            <div class="option-name">
+                                Data Scientist
+                            </div>
+
+                            <div class="option-desc">
+                                Data & analytics
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="role"
+                            value="Data Analyst"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-icon">
+                                ◒
+                            </div>
+
+                            <div class="option-name">
+                                Data Analyst
+                            </div>
+
+                            <div class="option-desc">
+                                Insights & reporting
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="role"
+                            value="Custom Role"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-icon">
+                                +
+                            </div>
+
+                            <div class="option-name">
+                                Custom Role
+                            </div>
+
+                            <div class="option-desc">
+                                Define your own role
+                            </div>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXPERIENCE -->
+
+            <div class="section">
+
+                <div class="section-label">
+                    Experience level
+                </div>
+
+                <div class="options four">
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="experience"
+                            value="Fresher"
+                            checked
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-name">
+                                Fresher
+                            </div>
+
+                            <div class="option-desc">
+                                0 years
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="experience"
+                            value="1–2 Years"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-name">
+                                1–2 Years
+                            </div>
+
+                            <div class="option-desc">
+                                Early career
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="experience"
+                            value="3–5 Years"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-name">
+                                3–5 Years
+                            </div>
+
+                            <div class="option-desc">
+                                Experienced
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="experience"
+                            value="5+ Years"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-name">
+                                5+ Years
+                            </div>
+
+                            <div class="option-desc">
+                                Senior
+                            </div>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- DIFFICULTY -->
+
+            <div class="section">
+
+                <div class="section-label">
+                    AI difficulty
+                </div>
+
+                <div class="options four">
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="difficulty"
+                            value="Easy"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-name">
+                                Easy
+                            </div>
+
+                            <div class="option-desc">
+                                Warm-up
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="difficulty"
+                            value="Medium"
+                            checked
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-name">
+                                Medium
+                            </div>
+
+                            <div class="option-desc">
+                                Balanced
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="difficulty"
+                            value="Hard"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-name">
+                                Hard
+                            </div>
+
+                            <div class="option-desc">
+                                Challenging
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="difficulty"
+                            value="Adaptive AI"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-name">
+                                Adaptive AI
+                            </div>
+
+                            <div class="option-desc">
+                                AI adjusts live
+                            </div>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTIONS -->
+
+            <div class="section">
+
+                <div class="section-label">
+                    Number of questions
+                </div>
+
+                <div class="options four">
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="questions"
+                            value="5"
+                        >
+
+                        <div class="option-box">
+                            <div class="option-name">
+                                5 Questions
+                            </div>
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="questions"
+                            value="10"
+                            checked
+                        >
+
+                        <div class="option-box">
+                            <div class="option-name">
+                                10 Questions
+                            </div>
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="questions"
+                            value="15"
+                        >
+
+                        <div class="option-box">
+                            <div class="option-name">
+                                15 Questions
+                            </div>
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="questions"
+                            value="20"
+                        >
+
+                        <div class="option-box">
+                            <div class="option-name">
+                                20 Questions
+                            </div>
+                        </div>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- MODE -->
+
+            <div class="section">
+
+                <div class="section-label">
+                    Interview mode
+                </div>
+
+                <div class="options">
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="mode"
+                            value="Text"
+                            checked
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-icon">
+                                ⌨
+                            </div>
+
+                            <div class="option-name">
+                                Text
+                            </div>
+
+                            <div class="option-desc">
+                                Type your answers
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="mode"
+                            value="Voice"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-icon">
+                                🎙
+                            </div>
+
+                            <div class="option-name">
+                                Voice
+                            </div>
+
+                            <div class="option-desc">
+                                Speak your answers
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="mode"
+                            value="Camera + Voice"
+                        >
+
+                        <div class="option-box">
+
+                            <div class="option-icon">
+                                ◉
+                            </div>
+
+                            <div class="option-name">
+                                Camera + Voice
+                            </div>
+
+                            <div class="option-desc">
+                                Full simulation
+                            </div>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="start-button"
+                onclick="startInterview()"
+            >
+                Start AI Interview →
+            </button>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="card summary">
+
+            <div class="summary-label">
+                Session preview
+            </div>
+
+            <h2>
+                Your interview
+            </h2>
+
+            <div class="summary-text">
+                Review your configuration before entering
+                the AI interview room.
+            </div>
+
+
+            <div class="summary-list">
+
+                <div class="summary-row">
+
+                    <span class="summary-key">
+                        Type
+                    </span>
+
+                    <span
+                        class="summary-value"
+                        id="summaryType"
+                    >
+                        Technical
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-key">
+                        Role
+                    </span>
+
+                    <span
+                        class="summary-value"
+                        id="summaryRole"
+                    >
+                        Software Developer
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-key">
+                        Experience
+                    </span>
+
+                    <span
+                        class="summary-value"
+                        id="summaryExperience"
+                    >
+                        Fresher
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-key">
+                        Difficulty
+                    </span>
+
+                    <span
+                        class="summary-value"
+                        id="summaryDifficulty"
+                    >
+                        Medium
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-key">
+                        Questions
+                    </span>
+
+                    <span
+                        class="summary-value"
+                        id="summaryQuestions"
+                    >
+                        10
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-key">
+                        Mode
+                    </span>
+
+                    <span
+                        class="summary-value"
+                        id="summaryMode"
+                    >
+                        Text
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="ai-box">
+
+                <div class="ai-box-title">
+                    ✦ Adaptive AI enabled
+                </div>
+
+                <p>
+                    Your answers will influence future questions,
+                    difficulty and follow-up prompts when
+                    Adaptive AI is selected.
+                </p>
+
+            </div>
+
+
+            <button
+                class="back-button"
+                onclick="goBack()"
+            >
+                ← Back to Dashboard
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast"
+>
+    Interview configuration saved.
+</div>
+
+
+<script>
+
+    function getValue(name) {
+
+        const selected =
+            document.querySelector(
+                `input[name="${name}"]:checked`
+            );
+
+        return selected
+            ? selected.value
+            : "";
+
+    }
+
+
+    function updateSummary() {
+
+        document.getElementById(
+            "summaryType"
+        ).textContent =
+            getValue("type");
+
+        document.getElementById(
+            "summaryRole"
+        ).textContent =
+            getValue("role");
+
+        document.getElementById(
+            "summaryExperience"
+        ).textContent =
+            getValue("experience");
+
+        document.getElementById(
+            "summaryDifficulty"
+        ).textContent =
+            getValue("difficulty");
+
+        document.getElementById(
+            "summaryQuestions"
+        ).textContent =
+            getValue("questions");
+
+        document.getElementById(
+            "summaryMode"
+        ).textContent =
+            getValue("mode");
+    }
+
+
+    document
+        .querySelectorAll("input[type=radio]")
+        .forEach(function(input) {
+
+            input.addEventListener(
+                "change",
+                updateSummary
+            );
+
+        });
+
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById("toast");
+
+        toast.textContent = message;
+
+        toast.classList.add("show");
+
+        setTimeout(function() {
+
+            toast.classList.remove("show");
+
+        }, 2200);
+
+    }
+
+
+    function startInterview() {
+
+        const configuration = {
+
+            type: getValue("type"),
+
+            role: getValue("role"),
+
+            experience:
+                getValue("experience"),
+
+            difficulty:
+                getValue("difficulty"),
+
+            questions:
+                Number(
+                    getValue("questions")
+                ),
+
+            mode:
+                getValue("mode"),
+
+            startedAt:
+                new Date().toISOString()
+
+        };
+
+
+        localStorage.setItem(
+            "interviewConfig",
+            JSON.stringify(configuration)
+        );
+
+
+        showToast(
+            "Launching your AI interview..."
+        );
+
+
+        setTimeout(function() {
+
+            window.location.href =
+                "/interview-room.html";
+
+        }, 700);
+
+    }
+
+
+    function goBack() {
+
+        window.location.href =
+            "/dashboard.html";
+
+    }
+
+
+    updateSummary();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>InterviewIQ | Login</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    min-height:100vh;
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(117,103,255,.16),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(92,76,220,.12),
+            transparent 28%
+        ),
+        #080a10;
+
+    color:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.bg-orb{
+
+    position:fixed;
+
+    width:350px;
+    height:350px;
+
+    border-radius:50%;
+
+    background:
+        rgba(117,103,255,.05);
+
+    filter:blur(70px);
+
+    pointer-events:none;
+
+}
+
+.orb-one{
+
+    top:-150px;
+    left:-100px;
+
+}
+
+.orb-two{
+
+    right:-150px;
+    bottom:-150px;
+
+}
+
+
+/* =========================================
+   MAIN WRAPPER
+========================================= */
+
+.page{
+
+    width:92%;
+
+    max-width:1050px;
+
+    min-height:650px;
+
+    display:grid;
+
+    grid-template-columns:
+        1.05fr .95fr;
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+
+    border-radius:24px;
+
+    background:
+        rgba(13,16,25,.88);
+
+    box-shadow:
+        0 35px 100px
+        rgba(0,0,0,.45);
+
+    overflow:hidden;
+
+    backdrop-filter:blur(25px);
+
+}
+
+
+/* =========================================
+   LEFT PANEL
+========================================= */
+
+.left-panel{
+
+    padding:55px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(117,103,255,.07),
+            rgba(255,255,255,.01)
+        );
+
+    border-right:
+        1px solid
+        rgba(255,255,255,.055);
+
+}
+
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+.logo-icon{
+
+    width:42px;
+    height:42px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7567ff,
+            #5144d8
+        );
+
+    font-size:12px;
+
+    font-weight:900;
+
+    box-shadow:
+        0 10px 30px
+        rgba(117,103,255,.25);
+
+}
+
+
+.logo-name{
+
+    font-size:17px;
+
+    font-weight:800;
+
+    letter-spacing:-.4px;
+
+}
+
+
+.logo-sub{
+
+    margin-top:2px;
+
+    color:#626b7d;
+
+    font-size:7px;
+
+    letter-spacing:1.3px;
+
+    font-weight:700;
+
+}
+
+
+.hero{
+
+    margin-top:40px;
+
+}
+
+
+.hero-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:8px 11px;
+
+    border-radius:7px;
+
+    background:
+        rgba(117,103,255,.09);
+
+    border:
+        1px solid
+        rgba(117,103,255,.12);
+
+    color:#a59fff;
+
+    font-size:7px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+}
+
+
+.hero h1{
+
+    margin-top:18px;
+
+    max-width:480px;
+
+    font-size:
+        clamp(34px,4vw,54px);
+
+    line-height:1.02;
+
+    letter-spacing:-2px;
+
+}
+
+
+.hero h1 span{
+
+    color:#8178ff;
+
+}
+
+
+.hero p{
+
+    max-width:450px;
+
+    margin-top:18px;
+
+    color:#727b8d;
+
+    font-size:10px;
+
+    line-height:1.8;
+
+}
+
+
+/* =========================================
+   FEATURE LIST
+========================================= */
+
+.features{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:10px;
+
+    margin-top:35px;
+
+}
+
+
+.feature{
+
+    padding:13px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.05);
+
+    border-radius:10px;
+
+    background:
+        rgba(255,255,255,.018);
+
+}
+
+
+.feature-icon{
+
+    color:#8e87ff;
+
+    font-size:13px;
+
+}
+
+
+.feature strong{
+
+    display:block;
+
+    margin-top:7px;
+
+    font-size:8px;
+
+    color:#c7ccd5;
+
+}
+
+
+.feature p{
+
+    margin-top:3px;
+
+    color:#596273;
+
+    font-size:7px;
+
+    line-height:1.5;
+
+}
+
+
+/* =========================================
+   LEFT FOOTER
+========================================= */
+
+.footer-note{
+
+    color:#444c5b;
+
+    font-size:7px;
+
+}
+
+
+/* =========================================
+   RIGHT PANEL
+========================================= */
+
+.right-panel{
+
+    padding:55px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.login-box{
+
+    width:100%;
+
+    max-width:350px;
+
+}
+
+
+.login-heading{
+
+    margin-bottom:28px;
+
+}
+
+
+.login-heading h2{
+
+    font-size:25px;
+
+    letter-spacing:-.7px;
+
+}
+
+
+.login-heading p{
+
+    margin-top:7px;
+
+    color:#656e80;
+
+    font-size:8px;
+
+    line-height:1.6;
+
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.form-group{
+
+    margin-bottom:17px;
+
+}
+
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#858e9f;
+
+    font-size:8px;
+
+    font-weight:700;
+
+}
+
+
+.input-wrap{
+
+    position:relative;
+
+}
+
+
+.input-icon{
+
+    position:absolute;
+
+    left:13px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#596273;
+
+    font-size:11px;
+
+    pointer-events:none;
+
+}
+
+
+input{
+
+    width:100%;
+
+    height:45px;
+
+    padding:
+        0 13px 0 38px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:9px;
+
+    outline:none;
+
+    background:
+        rgba(255,255,255,.025);
+
+    color:#ffffff;
+
+    font-size:9px;
+
+    transition:.2s;
+
+}
+
+
+input::placeholder{
+
+    color:#454d5c;
+
+}
+
+
+input:focus{
+
+    border-color:
+        rgba(117,103,255,.65);
+
+    background:
+        rgba(117,103,255,.025);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(117,103,255,.07);
+
+}
+
+
+/* =========================================
+   PASSWORD
+========================================= */
+
+.password-toggle{
+
+    position:absolute;
+
+    right:12px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    border:none;
+
+    background:none;
+
+    color:#697284;
+
+    cursor:pointer;
+
+    font-size:8px;
+
+}
+
+
+.password-toggle:hover{
+
+    color:#a29cff;
+
+}
+
+
+/* =========================================
+   REMEMBER
+========================================= */
+
+.options{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-top:-2px;
+
+    margin-bottom:20px;
+
+}
+
+
+.remember{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    color:#626b7b;
+
+    font-size:7px;
+
+}
+
+
+.remember input{
+
+    width:12px;
+    height:12px;
+
+    padding:0;
+
+    accent-color:#7567ff;
+
+    box-shadow:none;
+
+}
+
+
+.forgot{
+
+    border:none;
+
+    background:none;
+
+    color:#827aff;
+
+    font-size:7px;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================
+   LOGIN BUTTON
+========================================= */
+
+.login-btn{
+
+    width:100%;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7567ff,
+            #584ad9
+        );
+
+    color:#fff;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 12px 30px
+        rgba(117,103,255,.18);
+
+    transition:.2s;
+
+}
+
+
+.login-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 17px 35px
+        rgba(117,103,255,.28);
+
+}
+
+
+.login-btn:disabled{
+
+    opacity:.55;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.status{
+
+    display:none;
+
+    margin-top:13px;
+
+    padding:11px 12px;
+
+    border-radius:8px;
+
+    font-size:8px;
+
+    line-height:1.5;
+
+}
+
+
+.status.error{
+
+    display:block;
+
+    color:#ff9292;
+
+    background:
+        rgba(255,70,70,.07);
+
+    border:
+        1px solid
+        rgba(255,70,70,.08);
+
+}
+
+
+.status.success{
+
+    display:block;
+
+    color:#78dfab;
+
+    background:
+        rgba(50,210,135,.07);
+
+    border:
+        1px solid
+        rgba(50,210,135,.08);
+
+}
+
+
+.status.loading{
+
+    display:block;
+
+    color:#aaa4ff;
+
+    background:
+        rgba(117,103,255,.07);
+
+}
+
+
+/* =========================================
+   REGISTER
+========================================= */
+
+.register{
+
+    margin-top:23px;
+
+    text-align:center;
+
+    color:#596273;
+
+    font-size:8px;
+
+}
+
+
+.register a{
+
+    color:#8b84ff;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+}
+
+
+.register a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+/* =========================================
+   SECURITY
+========================================= */
+
+.security{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:6px;
+
+    margin-top:20px;
+
+    color:#424a59;
+
+    font-size:7px;
+
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:800px){
+
+    body{
+
+        overflow:auto;
+
+        padding:20px 0;
+
+    }
+
+    .page{
+
+        grid-template-columns:1fr;
+
+        min-height:auto;
+
+    }
+
+    .left-panel{
+
+        padding:35px;
+
+        border-right:none;
+
+        border-bottom:
+            1px solid
+            rgba(255,255,255,.055);
+
+    }
+
+    .right-panel{
+
+        padding:35px;
+
+    }
+
+    .hero{
+
+        margin-top:30px;
+
+    }
+
+    .features{
+
+        margin-bottom:25px;
+
+    }
+
+}
+
+
+@media(max-width:500px){
+
+    .left-panel,
+    .right-panel{
+
+        padding:25px;
+
+    }
+
+    .features{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="bg-orb orb-one"></div>
+<div class="bg-orb orb-two"></div>
+
+
+<div class="page">
+
+
+    <!-- =====================================
+         LEFT SIDE
+    ====================================== -->
+
+    <section class="left-panel">
+
+
+        <div>
+
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    AI
+                </div>
+
+                <div>
+
+                    <div class="logo-name">
+                        InterviewIQ
+                    </div>
+
+                    <div class="logo-sub">
+                        SMART INTERVIEW ANALYZER
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="hero">
+
+
+                <div class="hero-badge">
+                    ✦ AI-POWERED INTERVIEW PLATFORM
+                </div>
+
+
+                <h1>
+                    Practice smarter.
+                    <span>Interview better.</span>
+                </h1>
+
+
+                <p>
+                    Prepare for technical, behavioral and
+                    HR interviews with intelligent questions,
+                    structured practice and detailed
+                    performance insights.
+                </p>
+
+
+                <div class="features">
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            ✦
+                        </div>
+
+                        <strong>
+                            AI Questions
+                        </strong>
+
+                        <p>
+                            Role-specific interview questions.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            ◈
+                        </div>
+
+                        <strong>
+                            Smart Analysis
+                        </strong>
+
+                        <p>
+                            Analyze your interview performance.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            ◎
+                        </div>
+
+                        <strong>
+                            Skill Insights
+                        </strong>
+
+                        <p>
+                            Discover your strengths and gaps.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            ↗
+                        </div>
+
+                        <strong>
+                            Track Progress
+                        </strong>
+
+                        <p>
+                            Monitor your improvement over time.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-note">
+            © 2026 InterviewIQ • Intelligent Interview Preparation
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         RIGHT SIDE
+    ====================================== -->
+
+    <section class="right-panel">
+
+
+        <div class="login-box">
+
+
+            <div class="login-heading">
+
+                <h2>
+                    Welcome back
+                </h2>
+
+                <p>
+                    Sign in to continue your AI interview journey.
+                </p>
+
+            </div>
+
+
+
+            <form
+                id="loginForm"
+                onsubmit="handleLogin(event)"
+            >
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        EMAIL ADDRESS
+                    </label>
+
+
+                    <div class="input-wrap">
+
+                        <span class="input-icon">
+                            @
+                        </span>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        PASSWORD
+                    </label>
+
+
+                    <div class="input-wrap">
+
+                        <span class="input-icon">
+                            ●
+                        </span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword()"
+                            id="passwordToggle"
+                        >
+                            SHOW
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- OPTIONS -->
+
+                <div class="options">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            id="remember"
+                        >
+
+                        Remember me
+
+                    </label>
+
+
+                    <button
+                        type="button"
+                        class="forgot"
+                        onclick="forgotPassword()"
+                    >
+                        Forgot password?
+                    </button>
+
+                </div>
+
+
+
+                <!-- LOGIN -->
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                    id="loginButton"
+                >
+                    Sign In →
+                </button>
+
+
+                <!-- STATUS -->
+
+                <div
+                    id="status"
+                    class="status"
+                ></div>
+
+
+            </form>
+
+
+
+            <!-- REGISTER -->
+
+            <div class="register">
+
+                Don't have an account?
+                <a href="register.html">
+                    Create account
+                </a>
+
+            </div>
+
+
+            <div class="security">
+                🔒 Secure authentication • Your data stays protected
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+
+<script>
+
+/* ============================================================
+   CLEAR OLD LOGIN STATE ON LOGIN PAGE
+============================================================ */
+
+/*
+   We intentionally do NOT redirect automatically here.
+   This ensures the login page always remains a real login page.
+*/
+
+
+/* ============================================================
+   PASSWORD VISIBILITY
+============================================================ */
+
+function togglePassword(){
+
+    const password =
+        document.getElementById(
+            "password"
+        );
+
+    const toggle =
+        document.getElementById(
+            "passwordToggle"
+        );
+
+
+    if(
+        password.type === "password"
+    ){
+
+        password.type =
+            "text";
+
+        toggle.textContent =
+            "HIDE";
+
+    }
+    else{
+
+        password.type =
+            "password";
+
+        toggle.textContent =
+            "SHOW";
+
+    }
+
+}
+
+
+/* ============================================================
+   STATUS MESSAGE
+============================================================ */
+
+function setStatus(
+    message,
+    type
+){
+
+    const status =
+        document.getElementById(
+            "status"
+        );
+
+
+    status.textContent =
+        message;
+
+
+    status.className =
+        "status " + type;
+
+}
+
+
+/* ============================================================
+   LOGIN
+============================================================ */
+
+async function handleLogin(event){
+
+    event.preventDefault();
+
+
+    const email =
+        document.getElementById(
+            "email"
+        ).value.trim();
+
+
+    const password =
+        document.getElementById(
+            "password"
+        ).value;
+
+
+    const button =
+        document.getElementById(
+            "loginButton"
+        );
+
+
+    if(!email || !password){
+
+        setStatus(
+            "Please enter your email and password.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    button.disabled =
+        true;
+
+    button.textContent =
+        "Signing in...";
+
+
+    setStatus(
+        "Authenticating your account...",
+        "loading"
+    );
+
+
+    try{
+
+
+        const response =
+            await fetch(
+                "/api/auth/login",
+                {
+
+                    method:
+                        "POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            email:
+                                email,
+
+                            password:
+                                password
+
+                        })
+
+                }
+            );
+
+
+        let data = {};
+
+        try{
+
+            data =
+                await response.json();
+
+        }
+        catch{
+
+            data = {};
+
+        }
+
+
+        /* ==============================================
+           LOGIN FAILED
+        ============================================== */
+
+        if(!response.ok){
+
+            let message =
+                "Login failed. Please check your credentials.";
+
+
+            if(data.detail){
+
+                if(
+                    typeof data.detail ===
+                    "string"
+                ){
+
+                    message =
+                        data.detail;
+
+                }
+                else if(
+                    Array.isArray(
+                        data.detail
+                    )
+                ){
+
+                    message =
+                        data.detail
+                        .map(
+                            item =>
+                                item.msg ||
+                                "Invalid input"
+                        )
+                        .join(", ");
+
+                }
+
+            }
+
+
+            throw new Error(
+                message
+            );
+
+        }
+
+
+        /* ==============================================
+           SAVE AUTHENTICATION
+        ============================================== */
+
+        if(
+            !data.access_token
+        ){
+
+            throw new Error(
+                "Login succeeded but no access token was returned."
+            );
+
+        }
+
+
+        localStorage.setItem(
+            "access_token",
+            data.access_token
+        );
+
+
+        if(data.user){
+
+            localStorage.setItem(
+                "user",
+                JSON.stringify(
+                    data.user
+                )
+            );
+
+        }
+
+
+        /* ==============================================
+           SUCCESS
+        ============================================== */
+
+        setStatus(
+            "Login successful. Redirecting...",
+            "success"
+        );
+
+
+        button.textContent =
+            "Welcome ✓";
+
+
+        setTimeout(
+
+            function(){
+
+                window.location.href =
+                    "dashboard.html";
+
+            },
+
+            800
+
+        );
+
+
+    }
+    catch(error){
+
+        console.error(
+            "Login Error:",
+            error
+        );
+
+
+        setStatus(
+            error.message ||
+            "Unable to connect to the server.",
+            "error"
+        );
+
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            "Sign In →";
+
+    }
+
+}
+
+
+/* ============================================================
+   FORGOT PASSWORD
+============================================================ */
+
+function forgotPassword(){
+
+    setStatus(
+        "Password recovery will be available in the next module.",
+        "loading"
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>InterviewIQ | Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            background:
+                radial-gradient(circle at 80% 20%, rgba(91, 76, 220, 0.16), transparent 30%),
+                #050817;
+            color: #f7f7fb;
+            min-height: 100vh;
+        }
+
+        button,
+        a {
+            font-family: inherit;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================
+           LAYOUT
+        ========================= */
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            width: 258px;
+            min-height: 100vh;
+            background: rgba(7, 11, 29, 0.96);
+            border-right: 1px solid rgba(255,255,255,0.08);
+            padding: 28px 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            z-index: 20;
+        }
+
+        .brand {
+            font-size: 27px;
+            font-weight: 800;
+            padding: 8px 14px 34px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .brand span {
+            color: #8b72ff;
+        }
+
+        .menu-title {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #66708e;
+            font-weight: 800;
+            margin: 30px 14px 12px;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 14px;
+            border-radius: 11px;
+            color: #8992ad;
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            background: rgba(125, 102, 255, 0.12);
+            color: white;
+            transform: translateX(2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(
+                135deg,
+                rgba(116, 94, 255, 0.25),
+                rgba(116, 94, 255, 0.10)
+            );
+            color: white;
+            border: 1px solid rgba(125, 102, 255, 0.20);
+        }
+
+        .nav-icon {
+            width: 20px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .logout-btn {
+            width: 100%;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.025);
+            color: #8d96ae;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .logout-btn:hover {
+            color: white;
+            background: rgba(255,255,255,0.07);
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+            margin-left: 258px;
+            width: calc(100% - 258px);
+            padding: 42px 38px 60px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .eyebrow {
+            color: #8b72ff;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 34px;
+            line-height: 1.2;
+        }
+
+        .welcome-name {
+            color: #8b72ff;
+        }
+
+        .subtitle {
+            color: #8992ad;
+            margin-top: 8px;
+            font-size: 15px;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #765fff, #9254ed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .profile-name {
+            font-weight: 700;
+        }
+
+        .profile-role {
+            color: #717b97;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            border: 1px solid rgba(139,114,255,0.17);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 24px;
+            background:
+                radial-gradient(circle at 90% 50%, rgba(118,95,255,0.18), transparent 38%),
+                linear-gradient(135deg, #11152c, #0d1121);
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: rgba(117,96,255,0.13);
+            color: #9d8dff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .hero h2 {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #8791ad;
+            font-size: 14px;
+            max-width: 800px;
+            line-height: 1.7;
+        }
+
+        .primary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 22px;
+            padding: 13px 20px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #7660ff, #6647df);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(106,80,240,0.20);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 35px rgba(106,80,240,0.30);
+        }
+
+        /* =========================
+           STAT CARDS
+        ========================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 22px;
+        }
+
+        .stat-card {
+            background: #0e1425;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 17px;
+            padding: 24px;
+            min-height: 145px;
+        }
+
+        .stat-label {
+            color: #8090ad;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 17px;
+        }
+
+        .stat-value {
+            font-size: 35px;
+            font-weight: 800;
+        }
+
+        .stat-note {
+            color: #76809c;
+            font-size: 12px;
+            margin-top: 9px;
+        }
+
+        .positive {
+            color: #50e49a;
+        }
+
+        /* =========================
+           CONTENT GRID
+        ========================= */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.65fr 1fr;
+            gap: 22px;
+            margin-bottom: 22px;
+        }
+
+        .card {
+            background: #0e1425;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 18px;
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .card-subtitle {
+            color: #69748f;
+            font-size: 12px;
+            margin-bottom: 24px;
+        }
+
+        /* =========================
+           TREND
+        ========================= */
+
+        .chart {
+            height: 260px;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px 30px 5px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .bar-wrapper {
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bar {
+            width: 52px;
+            min-height: 25px;
+            border-radius: 9px 9px 3px 3px;
+            background: linear-gradient(180deg, #8d78ff, #5741d6);
+            box-shadow: 0 8px 30px rgba(99,75,229,0.25);
+            transition: 0.3s;
+        }
+
+        .bar:hover {
+            transform: translateY(-4px);
+        }
+
+        .bar-value {
+            font-size: 12px;
+            color: #b4aaff;
+        }
+
+        .bar-label {
+            color: #66718d;
+            font-size: 11px;
+        }
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skill {
+            margin-bottom: 22px;
+        }
+
+        .skill-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .skill-name {
+            color: #e7e9f0;
+        }
+
+        .skill-score {
+            color: #8b72ff;
+            font-weight: 700;
+        }
+
+        .progress {
+            height: 8px;
+            border-radius: 99px;
+            background: #20283b;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #765eff, #9a83ff);
+            transition: width 0.7s ease;
+        }
+
+        /* =========================
+           RECENT INTERVIEWS
+        ========================= */
+
+        .recent-card {
+            margin-bottom: 22px;
+        }
+
+        .recent-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .small-btn {
+            background: rgba(117,96,255,0.16);
+            border: 1px solid rgba(117,96,255,0.22);
+            color: #aa9dff;
+            padding: 9px 14px;
+            border-radius: 9px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .recent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .recent-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 16px;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+        }
+
+        .recent-left {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .recent-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(117,96,255,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .recent-role {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .recent-type {
+            font-size: 11px;
+            color: #69738e;
+            margin-top: 4px;
+        }
+
+        .recent-score {
+            font-size: 17px;
+            font-weight: 800;
+            color: #8d7aff;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 35px;
+            color: #68738d;
+            font-size: 13px;
+        }
+
+        /* =========================
+           QUICK TOOLS
+        ========================= */
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .quick-card {
+            padding: 20px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.06);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .quick-card:hover {
+            border-color: rgba(125,102,255,0.35);
+            transform: translateY(-2px);
+        }
+
+        .quick-icon {
+            font-size: 22px;
+            margin-bottom: 13px;
+        }
+
+        .quick-title {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .quick-text {
+            color: #68738d;
+            font-size: 11px;
+            margin-top: 5px;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1100px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .sidebar {
+                width: 80px;
+                padding: 20px 10px;
+            }
+
+            .brand {
+                font-size: 0;
+                text-align: center;
+                padding: 10px 0 25px;
+            }
+
+            .brand::after {
+                content: "IQ";
+                font-size: 20px;
+                color: #8b72ff;
+            }
+
+            .menu-title {
+                display: none;
+            }
+
+            .nav-link {
+                justify-content: center;
+                padding: 13px;
+            }
+
+            .nav-link span:not(.nav-icon) {
+                display: none;
+            }
+
+            .main {
+                margin-left: 80px;
+                width: calc(100% - 80px);
+                padding: 25px 18px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+            }
+
+            .profile {
+                display: none;
+            }
+
+            .quick-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            Interview<span>IQ</span>
+        </div>
+
+        <div class="menu-title">
+            Workspace
+        </div>
+
+        <nav class="nav">
+
+            <a href="/dashboard.html"
+               class="nav-link active">
+                <span class="nav-icon">◇</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="/interview.html"
+               class="nav-link">
+                <span class="nav-icon">◎</span>
+                <span>New Interview</span>
+            </a>
+
+            <a href="/history.html"
+               class="nav-link">
+                <span class="nav-icon">◷</span>
+                <span>Interview History</span>
+            </a>
+
+            <a href="/analytics.html"
+               class="nav-link">
+                <span class="nav-icon">▥</span>
+                <span>Analytics</span>
+            </a>
+
+        </nav>
+
+        <div class="menu-title">
+            Tools
+        </div>
+
+        <nav class="nav">
+
+            <a href="/coach.html"
+               class="nav-link">
+                <span class="nav-icon">◇</span>
+                <span>AI Coach</span>
+            </a>
+
+            <a href="/settings.html"
+               class="nav-link">
+                <span class="nav-icon">⚙</span>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="logout-btn"
+                onclick="logout()">
+                ⇥ &nbsp; Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main">
+
+        <!-- TOP BAR -->
+
+        <div class="topbar">
+
+            <div>
+                <div class="eyebrow">
+                    Interview Intelligence Center
+                </div>
+
+                <h1>
+                    Welcome back,
+                    <span class="welcome-name"
+                          id="userName">
+                        Demo User
+                    </span>
+                    👋
+                </h1>
+
+                <p class="subtitle">
+                    Track your interview performance and improve faster.
+                </p>
+            </div>
+
+            <div class="profile">
+
+                <div class="avatar"
+                     id="avatar">
+                    D
+                </div>
+
+                <div>
+                    <div class="profile-name"
+                         id="profileName">
+                        Demo User
+                    </div>
+
+                    <div class="profile-role">
+                        Candidate
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-label">
+                ✦ AI INTERVIEW ENGINE
+            </div>
+
+            <h2>
+                Ready to sharpen your interview skills?
+            </h2>
+
+            <p>
+                Practice realistic interviews, receive AI-powered
+                feedback and understand exactly where you can improve
+                before your next opportunity.
+            </p>
+
+            <a href="/interview.html"
+               class="primary-btn">
+                Start New AI Interview →
+            </a>
+
+        </section>
+
+
+        <!-- =================================================
+             STATS
+        ================================================== -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Overall Score
+                </div>
+
+                <div class="stat-value"
+                     id="overallScore">
+                    0%
+                </div>
+
+                <div class="stat-note positive">
+                    Latest interview
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Interviews
+                </div>
+
+                <div class="stat-value"
+                     id="interviewCount">
+                    0
+                </div>
+
+                <div class="stat-note">
+                    Completed sessions
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Confidence
+                </div>
+
+                <div class="stat-value"
+                     id="confidenceScore">
+                    0%
+                </div>
+
+                <div class="stat-note">
+                    Latest score
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Performance
+                </div>
+
+                <div class="stat-value"
+                     id="performanceText">
+                    —
+                </div>
+
+                <div class="stat-note">
+                    AI assessment
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             TREND + SKILLS
+        ================================================== -->
+
+        <section class="content-grid">
+
+            <div class="card">
+
+                <div class="card-title">
+                    Performance Trend
+                </div>
+
+                <div class="card-subtitle">
+                    Your interview scores over time
+                </div>
+
+                <div class="chart"
+                     id="chart">
+
+                    <div class="empty">
+                        Complete interviews to see your performance trend.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-title">
+                    Skill Analysis
+                </div>
+
+                <div class="card-subtitle">
+                    Current interview performance
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-row">
+                        <span class="skill-name">
+                            Technical
+                        </span>
+
+                        <span class="skill-score"
+                              id="technicalScore">
+                            0%
+                        </span>
+                    </div>
+
+                    <div class="progress">
+                        <div class="progress-fill"
+                             id="technicalBar">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-row">
+                        <span class="skill-name">
+                            Communication
+                        </span>
+
+                        <span class="skill-score"
+                              id="communicationScore">
+                            0%
+                        </span>
+                    </div>
+
+                    <div class="progress">
+                        <div class="progress-fill"
+                             id="communicationBar">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-row">
+                        <span class="skill-name">
+                            Problem Solving
+                        </span>
+
+                        <span class="skill-score"
+                              id="problemScore">
+                            0%
+                        </span>
+                    </div>
+
+                    <div class="progress">
+                        <div class="progress-fill"
+                             id="problemBar">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-row">
+                        <span class="skill-name">
+                            Confidence
+                        </span>
+
+                        <span class="skill-score"
+                              id="confidenceSkill">
+                            0%
+                        </span>
+                    </div>
+
+                    <div class="progress">
+                        <div class="progress-fill"
+                             id="confidenceBar">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RECENT INTERVIEWS
+        ================================================== -->
+
+        <section class="card recent-card">
+
+            <div class="recent-header">
+
+                <div>
+
+                    <div class="card-title">
+                        Recent Interviews
+                    </div>
+
+                    <div class="card-subtitle"
+                         style="margin-bottom:0;">
+                        Your latest interview sessions
+                    </div>
+
+                </div>
+
+                <a href="/history.html"
+                   class="small-btn">
+                    View All →
+                </a>
+
+            </div>
+
+            <div class="recent-list"
+                 id="recentList">
+
+                <div class="empty">
+                    Loading interview history...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             QUICK TOOLS
+        ================================================== -->
+
+        <section class="card">
+
+            <div class="card-title">
+                Quick Access
+            </div>
+
+            <div class="card-subtitle">
+                Continue improving your interview performance
+            </div>
+
+            <div class="quick-grid">
+
+                <a href="/interview.html"
+                   class="quick-card">
+
+                    <div class="quick-icon">
+                        🎯
+                    </div>
+
+                    <div class="quick-title">
+                        New Interview
+                    </div>
+
+                    <div class="quick-text">
+                        Start a personalized AI interview.
+                    </div>
+
+                </a>
+
+
+                <a href="/analytics.html"
+                   class="quick-card">
+
+                    <div class="quick-icon">
+                        📊
+                    </div>
+
+                    <div class="quick-title">
+                        Analytics
+                    </div>
+
+                    <div class="quick-text">
+                        Explore detailed performance insights.
+                    </div>
+
+                </a>
+
+
+                <a href="/coach.html"
+                   class="quick-card">
+
+                    <div class="quick-icon">
+                        🤖
+                    </div>
+
+                    <div class="quick-title">
+                        AI Coach
+                    </div>
+
+                    <div class="quick-text">
+                        Get personalized improvement guidance.
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    /* =====================================================
+       USER
+    ====================================================== */
+
+    let currentUser = null;
+
+    try {
+
+        const storedUser =
+            localStorage.getItem("user");
+
+        if (storedUser) {
+
+            currentUser =
+                JSON.parse(storedUser);
+
+        }
+
+    } catch (error) {
+
+        console.log(
+            "Unable to read stored user."
+        );
+
+    }
+
+
+    function getUserId() {
+
+        if (currentUser && currentUser.id) {
+            return currentUser.id;
+        }
+
+        return 1;
+    }
+
+
+    function displayUser() {
+
+        const name =
+            currentUser?.full_name ||
+            currentUser?.name ||
+            "Demo User";
+
+        document.getElementById(
+            "userName"
+        ).textContent = name;
+
+        document.getElementById(
+            "profileName"
+        ).textContent = name;
+
+        document.getElementById(
+            "avatar"
+        ).textContent =
+            name.charAt(0).toUpperCase();
+
+    }
+
+
+    /* =====================================================
+       HELPERS
+    ====================================================== */
+
+    function numberValue(value) {
+
+        const number =
+            Number(value);
+
+        if (
+            Number.isNaN(number) ||
+            !Number.isFinite(number)
+        ) {
+
+            return 0;
+
+        }
+
+        return Math.max(
+            0,
+            Math.min(
+                100,
+                Math.round(number)
+            )
+        );
+
+    }
+
+
+    function findValue(object, keys) {
+
+        if (!object) {
+            return 0;
+        }
+
+        for (const key of keys) {
+
+            if (
+                object[key] !== undefined &&
+                object[key] !== null
+            ) {
+
+                return numberValue(
+                    object[key]
+                );
+
+            }
+
+        }
+
+        return 0;
+
+    }
+
+
+    /* =====================================================
+       PERFORMANCE LABEL
+    ====================================================== */
+
+    function performanceLabel(score) {
+
+        if (score >= 85) {
+            return "Excellent";
+        }
+
+        if (score >= 70) {
+            return "Strong";
+        }
+
+        if (score >= 55) {
+            return "Average";
+        }
+
+        if (score >= 40) {
+            return "Needs Work";
+        }
+
+        return "Beginner";
+    }
+
+
+    /* =====================================================
+       UPDATE STATS
+    ====================================================== */
+
+    function updateStats(interviews) {
+
+        if (!Array.isArray(interviews) ||
+            interviews.length === 0) {
+
+            return;
+
+        }
+
+        const latest =
+            interviews[0];
+
+        const score =
+            findValue(
+                latest,
+                [
+                    "score",
+                    "overall_score",
+                    "final_score",
+                    "total_score",
+                    "performance_score"
+                ]
+            );
+
+        const confidence =
+            findValue(
+                latest,
+                [
+                    "confidence",
+                    "confidence_score"
+                ]
+            );
+
+        const technical =
+            findValue(
+                latest,
+                [
+                    "technical",
+                    "technical_score"
+                ]
+            );
+
+        const communication =
+            findValue(
+                latest,
+                [
+                    "communication",
+                    "communication_score"
+                ]
+            );
+
+        const problem =
+            findValue(
+                latest,
+                [
+                    "problem_solving",
+                    "problem_solving_score"
+                ]
+            );
+
+
+        document.getElementById(
+            "overallScore"
+        ).textContent =
+            score + "%";
+
+
+        document.getElementById(
+            "confidenceScore"
+        ).textContent =
+            confidence + "%";
+
+
+        document.getElementById(
+            "performanceText"
+        ).textContent =
+            performanceLabel(score);
+
+
+        document.getElementById(
+            "technicalScore"
+        ).textContent =
+            technical + "%";
+
+        document.getElementById(
+            "communicationScore"
+        ).textContent =
+            communication + "%";
+
+        document.getElementById(
+            "problemScore"
+        ).textContent =
+            problem + "%";
+
+        document.getElementById(
+            "confidenceSkill"
+        ).textContent =
+            confidence + "%";
+
+
+        document.getElementById(
+            "technicalBar"
+        ).style.width =
+            technical + "%";
+
+        document.getElementById(
+            "communicationBar"
+        ).style.width =
+            communication + "%";
+
+        document.getElementById(
+            "problemBar"
+        ).style.width =
+            problem + "%";
+
+        document.getElementById(
+            "confidenceBar"
+        ).style.width =
+            confidence + "%";
+
+    }
+
+
+    /* =====================================================
+       RENDER CHART
+    ====================================================== */
+
+    function renderChart(interviews) {
+
+        const chart =
+            document.getElementById(
+                "chart"
+            );
+
+        if (
+            !Array.isArray(interviews) ||
+            interviews.length === 0
+        ) {
+
+            chart.innerHTML = `
+                <div class="empty">
+                    Complete interviews to see your performance trend.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        const items =
+            interviews
+                .slice()
+                .reverse()
+                .slice(-7);
+
+
+        chart.innerHTML = "";
+
+
+        items.forEach(
+            (item, index) => {
+
+                const score =
+                    findValue(
+                        item,
+                        [
+                            "score",
+                            "overall_score",
+                            "final_score",
+                            "total_score",
+                            "performance_score"
+                        ]
+                    );
+
+
+                const wrapper =
+                    document.createElement(
+                        "div"
+                    );
+
+                wrapper.className =
+                    "bar-wrapper";
+
+
+                wrapper.innerHTML = `
+
+                    <div class="bar-value">
+                        ${score}
+                    </div>
+
+                    <div
+                        class="bar"
+                        style="height:${Math.max(
+                            25,
+                            score * 2
+                        )}px;">
+                    </div>
+
+                    <div class="bar-label">
+                        #${index + 1}
+                    </div>
+
+                `;
+
+
+                chart.appendChild(
+                    wrapper
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       RECENT INTERVIEWS
+    ====================================================== */
+
+    function renderRecent(interviews) {
+
+        const list =
+            document.getElementById(
+                "recentList"
+            );
+
+
+        if (
+            !Array.isArray(interviews) ||
+            interviews.length === 0
+        ) {
+
+            list.innerHTML = `
+
+                <div class="empty">
+                    No interviews yet.<br><br>
+
+                    <a
+                        href="/interview.html"
+                        class="small-btn">
+                        Start your first interview →
+                    </a>
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        list.innerHTML = "";
+
+
+        interviews
+            .slice(0, 5)
+            .forEach(
+                item => {
+
+                    const score =
+                        findValue(
+                            item,
+                            [
+                                "score",
+                                "overall_score",
+                                "final_score",
+                                "total_score",
+                                "performance_score"
+                            ]
+                        );
+
+
+                    const role =
+                        item.role ||
+                        item.job_role ||
+                        "Software Developer";
+
+
+                    const type =
+                        item.interview_type ||
+                        item.type ||
+                        "AI Interview";
+
+
+                    const row =
+                        document.createElement(
+                            "div"
+                        );
+
+                    row.className =
+                        "recent-item";
+
+
+                    row.innerHTML = `
+
+                        <div class="recent-left">
+
+                            <div class="recent-icon">
+                                ◇
+                            </div>
+
+                            <div>
+
+                                <div class="recent-role">
+                                    ${escapeHTML(role)}
+                                </div>
+
+                                <div class="recent-type">
+                                    ${escapeHTML(type)}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="recent-score">
+                            ${score}%
+                        </div>
+
+                    `;
+
+
+                    list.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+    }
+
+
+    function escapeHTML(value) {
+
+        return String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+
+    }
+
+
+    /* =====================================================
+       LOAD HISTORY
+    ====================================================== */
+
+    async function loadDashboard() {
+
+        try {
+
+            const userId =
+                getUserId();
+
+
+            const response =
+                await fetch(
+                    `/api/interview/history/${userId}`
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "History request failed"
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            console.log(
+                "Interview history:",
+                data
+            );
+
+
+            let interviews = [];
+
+
+            if (Array.isArray(data)) {
+
+                interviews = data;
+
+            } else if (
+                Array.isArray(data.interviews)
+            ) {
+
+                interviews =
+                    data.interviews;
+
+            } else if (
+                Array.isArray(data.history)
+            ) {
+
+                interviews =
+                    data.history;
+
+            } else if (
+                Array.isArray(data.results)
+            ) {
+
+                interviews =
+                    data.results;
+
+            }
+
+
+            document.getElementById(
+                "interviewCount"
+            ).textContent =
+                interviews.length;
+
+
+            updateStats(
+                interviews
+            );
+
+
+            renderChart(
+                interviews
+            );
+
+
+            renderRecent(
+                interviews
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Dashboard error:",
+                error
+            );
+
+
+            document.getElementById(
+                "recentList"
+            ).innerHTML = `
+
+                <div class="empty">
+
+                    Unable to load interview history.
+
+                    <br><br>
+
+                    Please complete an interview
+                    and refresh the dashboard.
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       LOGOUT
+    ====================================================== */
+
+    function logout() {
+
+        localStorage.removeItem(
+            "access_token"
+        );
+
+        localStorage.removeItem(
+            "token"
+        );
+
+        localStorage.removeItem(
+            "user"
+        );
+
+        window.location.href =
+            "/login.html";
+
+    }
+
+
+    /* =====================================================
+       START
+    ====================================================== */
+
+    displayUser();
+
+    loadDashboard();
+
+</script>
+
+</body>
+</html>

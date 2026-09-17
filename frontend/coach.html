@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI Coach | InterviewIQ</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#080b14;
+    color:#f5f5fa;
+}
+a{text-decoration:none;color:inherit}
+.layout{display:flex;min-height:100vh}
+
+.sidebar{
+    width:270px;
+    position:fixed;
+    inset:0 auto 0 0;
+    background:#0d1019;
+    border-right:1px solid #202434;
+    padding:28px 14px;
+}
+.logo{
+    display:flex;align-items:center;gap:14px;
+    padding:0 10px 28px;border-bottom:1px solid #202434;
+}
+.logo-box{
+    width:48px;height:48px;border-radius:14px;
+    background:linear-gradient(135deg,#6d5dfc,#8b4df5);
+    display:flex;align-items:center;justify-content:center;font-weight:bold;
+}
+.logo h2{font-size:18px}
+.logo small{font-size:8px;color:#6e7488;letter-spacing:1px}
+.section-title{
+    color:#666d82;font-size:10px;font-weight:bold;
+    letter-spacing:2px;margin:30px 12px 12px;
+}
+.nav a{
+    display:flex;gap:14px;align-items:center;
+    padding:14px 16px;margin-bottom:4px;
+    border-radius:10px;color:#8c93a8;font-size:13px;
+}
+.nav a:hover,.nav a.active{
+    background:#191a35;color:#a999ff;
+}
+.icon{width:18px;text-align:center}
+.profile{
+    position:absolute;left:14px;right:14px;bottom:20px;
+    padding:14px;border:1px solid #242839;border-radius:12px;background:#11141d;
+}
+.profile-row{display:flex;gap:12px;align-items:center}
+.avatar{
+    width:38px;height:38px;border-radius:10px;background:#6655ef;
+    display:flex;align-items:center;justify-content:center;font-weight:bold;
+}
+.profile-name{font-size:13px;font-weight:bold}
+.profile-email{font-size:10px;color:#687087;margin-top:4px}
+
+.main{
+    margin-left:270px;
+    width:calc(100% - 270px);
+    padding:40px 55px;
+}
+.eyebrow{
+    color:#8878ff;font-size:10px;font-weight:bold;
+    letter-spacing:2px;margin-bottom:12px;
+}
+h1{font-size:38px;margin-bottom:10px}
+.subtitle{color:#737b92;font-size:14px;margin-bottom:35px}
+
+.coach{
+    max-width:900px;
+    background:#111520;
+    border:1px solid #242938;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.coach-head{
+    padding:28px;
+    background:linear-gradient(135deg,#171731,#111520);
+    border-bottom:1px solid #25293a;
+}
+
+.coach-head h2{font-size:22px;margin-bottom:8px}
+.coach-head p{font-size:12px;color:#747d94;line-height:1.6}
+
+.messages{padding:25px}
+
+.message{
+    display:flex;
+    gap:14px;
+    margin-bottom:22px;
+}
+
+.message-icon{
+    min-width:40px;
+    height:40px;
+    border-radius:12px;
+    background:#1c1b3b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#a08fff;
+}
+
+.message-content{
+    background:#171b27;
+    border:1px solid #272c3c;
+    border-radius:14px;
+    padding:16px;
+    line-height:1.6;
+    font-size:13px;
+    color:#aeb5c7;
+}
+
+.message-content strong{color:white}
+
+.action{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:10px;
+}
+
+.btn{
+    padding:12px 18px;
+    border:1px solid #30354a;
+    border-radius:10px;
+    color:#a69aff;
+    background:#151827;
+    cursor:pointer;
+    font-size:12px;
+}
+
+.btn:hover{
+    background:#211e42;
+}
+
+.primary{
+    background:linear-gradient(135deg,#6d5dfc,#7651df);
+    color:white;
+    border:none;
+}
+
+@media(max-width:800px){
+    .sidebar{width:80px}
+    .logo h2,.logo small,.section-title,.nav span,.profile{display:none}
+    .main{margin-left:80px;width:calc(100% - 80px);padding:25px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<aside class="sidebar">
+
+<div class="logo">
+<div class="logo-box">AI</div>
+<div>
+<h2>InterviewIQ</h2>
+<small>SMART INTERVIEW ANALYZER</small>
+</div>
+</div>
+
+<div class="section-title">WORKSPACE</div>
+
+<nav class="nav">
+<a href="/dashboard.html"><div class="icon">⌂</div><span>Dashboard</span></a>
+<a href="/interview.html"><div class="icon">✦</div><span>AI Interview</span></a>
+<a href="/history.html"><div class="icon">◷</div><span>Interview History</span></a>
+<a href="/analytics.html"><div class="icon">▥</div><span>Analytics</span></a>
+</nav>
+
+<div class="section-title">TOOLS</div>
+
+<nav class="nav">
+<a href="/coach.html" class="active"><div class="icon">♢</div><span>AI Coach</span></a>
+<a href="/settings.html"><div class="icon">⚙</div><span>Settings</span></a>
+</nav>
+
+<div class="profile">
+<div class="profile-row">
+<div class="avatar">DU</div>
+<div>
+<div class="profile-name">Demo User</div>
+<div class="profile-email">demo@interviewiq.com</div>
+</div>
+</div>
+</div>
+
+</aside>
+
+<main class="main">
+
+<div class="eyebrow">PERSONAL AI ASSISTANT</div>
+
+<h1>AI Coach</h1>
+
+<p class="subtitle">
+Your personal interview preparation assistant.
+</p>
+
+<div class="coach">
+
+<div class="coach-head">
+<h2>✦ InterviewIQ Coach</h2>
+<p>
+I analyze your recent performance and suggest what you should
+practice next.
+</p>
+</div>
+
+<div class="messages">
+
+<div class="message">
+<div class="message-icon">AI</div>
+<div class="message-content">
+<strong>Welcome back, Demo User!</strong><br>
+Your current interview readiness is <strong>84%</strong>.
+Your strongest area is problem solving, while communication
+and confidence have the most room for improvement.
+</div>
+</div>
+
+<div class="message">
+<div class="message-icon">↑</div>
+<div class="message-content">
+<strong>Today's recommendation</strong><br>
+Practice explaining technical concepts in a simple,
+structured way. Try using the <strong>Situation → Action →
+Result</strong> structure when answering behavioral questions.
+</div>
+</div>
+
+<div class="message">
+<div class="message-icon">★</div>
+<div class="message-content">
+<strong>Next target</strong><br>
+Complete one medium-difficulty technical interview and
+focus on concise answers, confidence and clear reasoning.
+</div>
+</div>
+
+<div class="action">
+<a class="btn primary" href="/interview.html">
+Start Coaching Interview →
+</a>
+
+<a class="btn" href="/analytics.html">
+View My Analytics
+</a>
+
+<a class="btn" href="/history.html">
+Review History
+</a>
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+</body>
+</html>

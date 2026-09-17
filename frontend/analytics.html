@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Analytics | InterviewIQ</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#080b14;
+    color:#f5f5fa;
+}
+a{text-decoration:none;color:inherit}
+.layout{display:flex;min-height:100vh}
+
+.sidebar{
+    width:270px;
+    position:fixed;
+    inset:0 auto 0 0;
+    background:#0d1019;
+    border-right:1px solid #202434;
+    padding:28px 14px;
+}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:0 10px 28px;
+    border-bottom:1px solid #202434;
+}
+.logo-box{
+    width:48px;height:48px;border-radius:14px;
+    background:linear-gradient(135deg,#6d5dfc,#8b4df5);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:bold;
+}
+.logo h2{font-size:18px}
+.logo small{font-size:8px;color:#6e7488;letter-spacing:1px}
+
+.section-title{
+    color:#666d82;font-size:10px;font-weight:bold;
+    letter-spacing:2px;margin:30px 12px 12px;
+}
+.nav a{
+    display:flex;gap:14px;align-items:center;
+    padding:14px 16px;margin-bottom:4px;
+    border-radius:10px;color:#8c93a8;font-size:13px;
+}
+.nav a:hover,.nav a.active{
+    background:#191a35;color:#a999ff;
+}
+.icon{width:18px;text-align:center}
+
+.profile{
+    position:absolute;left:14px;right:14px;bottom:20px;
+    padding:14px;border:1px solid #242839;
+    border-radius:12px;background:#11141d;
+}
+.profile-row{display:flex;gap:12px;align-items:center}
+.avatar{
+    width:38px;height:38px;border-radius:10px;
+    background:#6655ef;display:flex;
+    align-items:center;justify-content:center;font-weight:bold;
+}
+.profile-name{font-size:13px;font-weight:bold}
+.profile-email{font-size:10px;color:#687087;margin-top:4px}
+
+.main{
+    margin-left:270px;
+    width:calc(100% - 270px);
+    padding:40px 55px;
+}
+.eyebrow{
+    color:#8878ff;font-size:10px;font-weight:bold;
+    letter-spacing:2px;margin-bottom:12px;
+}
+h1{font-size:38px;margin-bottom:10px}
+.subtitle{color:#737b92;font-size:14px;margin-bottom:35px}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    margin-bottom:20px;
+}
+.stat{
+    background:#111520;
+    border:1px solid #242938;
+    border-radius:16px;
+    padding:22px;
+}
+.stat-label{
+    color:#70788e;
+    font-size:11px;
+    margin-bottom:12px;
+}
+.stat-value{font-size:30px;font-weight:bold}
+.stat-change{color:#52e69b;font-size:10px;margin-top:8px}
+
+.content{
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:20px;
+}
+.card{
+    background:#111520;
+    border:1px solid #242938;
+    border-radius:18px;
+    padding:25px;
+}
+.card h2{font-size:18px;margin-bottom:6px}
+.card-sub{color:#6f778b;font-size:11px;margin-bottom:25px}
+
+.skill{margin-bottom:23px}
+.skill-top{
+    display:flex;
+    justify-content:space-between;
+    font-size:11px;
+    color:#8a92a7;
+    margin-bottom:9px;
+}
+.bar{
+    height:8px;
+    background:#202432;
+    border-radius:20px;
+    overflow:hidden;
+}
+.fill{
+    height:100%;
+    background:linear-gradient(90deg,#705dfb,#a18cff);
+    border-radius:20px;
+}
+
+.chart{
+    height:230px;
+    display:flex;
+    align-items:end;
+    gap:15px;
+    padding:20px 10px 5px;
+}
+.bar-chart{
+    flex:1;
+    background:linear-gradient(to top,#705dfb,#a18cff);
+    border-radius:6px 6px 0 0;
+    min-height:30px;
+}
+.chart-labels{
+    display:flex;
+    gap:15px;
+    padding:0 10px;
+}
+.chart-labels div{
+    flex:1;
+    text-align:center;
+    color:#636b80;
+    font-size:9px;
+}
+
+@media(max-width:900px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .content{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<aside class="sidebar">
+
+<div class="logo">
+<div class="logo-box">AI</div>
+<div>
+<h2>InterviewIQ</h2>
+<small>SMART INTERVIEW ANALYZER</small>
+</div>
+</div>
+
+<div class="section-title">WORKSPACE</div>
+
+<nav class="nav">
+<a href="/dashboard.html"><div class="icon">⌂</div><span>Dashboard</span></a>
+<a href="/interview.html"><div class="icon">✦</div><span>AI Interview</span></a>
+<a href="/history.html"><div class="icon">◷</div><span>Interview History</span></a>
+<a href="/analytics.html" class="active"><div class="icon">▥</div><span>Analytics</span></a>
+</nav>
+
+<div class="section-title">TOOLS</div>
+
+<nav class="nav">
+<a href="/coach.html"><div class="icon">♢</div><span>AI Coach</span></a>
+<a href="/settings.html"><div class="icon">⚙</div><span>Settings</span></a>
+</nav>
+
+<div class="profile">
+<div class="profile-row">
+<div class="avatar">DU</div>
+<div>
+<div class="profile-name">Demo User</div>
+<div class="profile-email">demo@interviewiq.com</div>
+</div>
+</div>
+</div>
+
+</aside>
+
+<main class="main">
+
+<div class="eyebrow">PERFORMANCE INTELLIGENCE</div>
+
+<h1>Analytics</h1>
+
+<p class="subtitle">
+Understand your interview performance and track your improvement.
+</p>
+
+<div class="grid">
+
+<div class="stat">
+<div class="stat-label">OVERALL SCORE</div>
+<div class="stat-value">82%</div>
+<div class="stat-change">↑ 8% improvement</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">INTERVIEWS</div>
+<div class="stat-value">3</div>
+<div class="stat-change">Practice makes progress</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">BEST SCORE</div>
+<div class="stat-value">82%</div>
+<div class="stat-change">Personal best</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">READINESS</div>
+<div class="stat-value">84%</div>
+<div class="stat-change">Ready for interviews</div>
+</div>
+
+</div>
+
+<div class="content">
+
+<div class="card">
+
+<h2>Skill Performance</h2>
+<div class="card-sub">Current AI-estimated skill levels</div>
+
+<div class="skill">
+<div class="skill-top"><span>Technical Knowledge</span><span>86%</span></div>
+<div class="bar"><div class="fill" style="width:86%"></div></div>
+</div>
+
+<div class="skill">
+<div class="skill-top"><span>Communication</span><span>79%</span></div>
+<div class="bar"><div class="fill" style="width:79%"></div></div>
+</div>
+
+<div class="skill">
+<div class="skill-top"><span>Confidence</span><span>74%</span></div>
+<div class="bar"><div class="fill" style="width:74%"></div></div>
+</div>
+
+<div class="skill">
+<div class="skill-top"><span>Problem Solving</span><span>88%</span></div>
+<div class="bar"><div class="fill" style="width:88%"></div></div>
+</div>
+
+<div class="skill">
+<div class="skill-top"><span>Answer Structure</span><span>81%</span></div>
+<div class="bar"><div class="fill" style="width:81%"></div></div>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Score Trend</h2>
+<div class="card-sub">Recent interview scores</div>
+
+<div class="chart">
+<div class="bar-chart" style="height:61%"></div>
+<div class="bar-chart" style="height:74%"></div>
+<div class="bar-chart" style="height:82%"></div>
+</div>
+
+<div class="chart-labels">
+<div>Interview 1</div>
+<div>Interview 2</div>
+<div>Interview 3</div>
+</div>
+
+</div>
+
+</div>
+
+</main>
+</div>
+
+</body>
+</html>

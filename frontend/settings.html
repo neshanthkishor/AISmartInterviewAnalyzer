@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Settings | InterviewIQ</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#080b14;
+    color:#f5f5fa;
+}
+a{text-decoration:none;color:inherit}
+.layout{display:flex;min-height:100vh}
+
+.sidebar{
+    width:270px;
+    position:fixed;
+    inset:0 auto 0 0;
+    background:#0d1019;
+    border-right:1px solid #202434;
+    padding:28px 14px;
+}
+.logo{
+    display:flex;align-items:center;gap:14px;
+    padding:0 10px 28px;border-bottom:1px solid #202434;
+}
+.logo-box{
+    width:48px;height:48px;border-radius:14px;
+    background:linear-gradient(135deg,#6d5dfc,#8b4df5);
+    display:flex;align-items:center;justify-content:center;font-weight:bold;
+}
+.logo h2{font-size:18px}
+.logo small{font-size:8px;color:#6e7488;letter-spacing:1px}
+.section-title{
+    color:#666d82;font-size:10px;font-weight:bold;
+    letter-spacing:2px;margin:30px 12px 12px;
+}
+.nav a{
+    display:flex;gap:14px;align-items:center;
+    padding:14px 16px;margin-bottom:4px;
+    border-radius:10px;color:#8c93a8;font-size:13px;
+}
+.nav a:hover,.nav a.active{
+    background:#191a35;color:#a999ff;
+}
+.icon{width:18px;text-align:center}
+
+.profile{
+    position:absolute;left:14px;right:14px;bottom:20px;
+    padding:14px;border:1px solid #242839;border-radius:12px;background:#11141d;
+}
+.profile-row{display:flex;gap:12px;align-items:center}
+.avatar{
+    width:38px;height:38px;border-radius:10px;background:#6655ef;
+    display:flex;align-items:center;justify-content:center;font-weight:bold;
+}
+.profile-name{font-size:13px;font-weight:bold}
+.profile-email{font-size:10px;color:#687087;margin-top:4px}
+
+.main{
+    margin-left:270px;
+    width:calc(100% - 270px);
+    padding:40px 55px;
+    max-width:1200px;
+}
+.eyebrow{
+    color:#8878ff;font-size:10px;font-weight:bold;
+    letter-spacing:2px;margin-bottom:12px;
+}
+h1{font-size:38px;margin-bottom:10px}
+.subtitle{color:#737b92;font-size:14px;margin-bottom:35px}
+
+.card{
+    background:#111520;
+    border:1px solid #242938;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:20px;
+}
+
+.card h2{font-size:18px;margin-bottom:6px}
+.card-sub{font-size:11px;color:#6f778b;margin-bottom:25px}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0;
+    border-bottom:1px solid #242938;
+}
+
+.row:last-child{border-bottom:none}
+
+.label{
+    font-size:13px;
+    font-weight:bold;
+}
+
+.description{
+    font-size:10px;
+    color:#697186;
+    margin-top:5px;
+}
+
+.control{
+    background:#171b27;
+    border:1px solid #303548;
+    color:#ddd;
+    border-radius:8px;
+    padding:9px 12px;
+}
+
+.toggle{
+    width:44px;
+    height:24px;
+    border-radius:20px;
+    background:#6d5dfc;
+    position:relative;
+}
+
+.toggle:after{
+    content:"";
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:white;
+    position:absolute;
+    right:3px;
+    top:3px;
+}
+
+.save{
+    border:none;
+    background:linear-gradient(135deg,#6d5dfc,#7651df);
+    color:white;
+    padding:13px 22px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.saved{
+    display:inline-block;
+    margin-left:12px;
+    color:#52e69b;
+    font-size:11px;
+    opacity:0;
+    transition:.3s;
+}
+
+@media(max-width:800px){
+    .sidebar{width:80px}
+    .logo h2,.logo small,.section-title,.nav span,.profile{display:none}
+    .main{margin-left:80px;width:calc(100% - 80px);padding:25px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<aside class="sidebar">
+
+<div class="logo">
+<div class="logo-box">AI</div>
+<div>
+<h2>InterviewIQ</h2>
+<small>SMART INTERVIEW ANALYZER</small>
+</div>
+</div>
+
+<div class="section-title">WORKSPACE</div>
+
+<nav class="nav">
+<a href="/dashboard.html"><div class="icon">⌂</div><span>Dashboard</span></a>
+<a href="/interview.html"><div class="icon">✦</div><span>AI Interview</span></a>
+<a href="/history.html"><div class="icon">◷</div><span>Interview History</span></a>
+<a href="/analytics.html"><div class="icon">▥</div><span>Analytics</span></a>
+</nav>
+
+<div class="section-title">TOOLS</div>
+
+<nav class="nav">
+<a href="/coach.html"><div class="icon">♢</div><span>AI Coach</span></a>
+<a href="/settings.html" class="active"><div class="icon">⚙</div><span>Settings</span></a>
+</nav>
+
+<div class="profile">
+<div class="profile-row">
+<div class="avatar">DU</div>
+<div>
+<div class="profile-name">Demo User</div>
+<div class="profile-email">demo@interviewiq.com</div>
+</div>
+</div>
+</div>
+
+</aside>
+
+<main class="main">
+
+<div class="eyebrow">ACCOUNT CONTROL CENTER</div>
+
+<h1>Settings</h1>
+
+<p class="subtitle">
+Manage your InterviewIQ preferences and interview experience.
+</p>
+
+<div class="card">
+
+<h2>Profile</h2>
+<div class="card-sub">Your account information</div>
+
+<div class="row">
+<div>
+<div class="label">Full Name</div>
+<div class="description">Name displayed across InterviewIQ</div>
+</div>
+<input class="control" value="Demo User">
+</div>
+
+<div class="row">
+<div>
+<div class="label">Email Address</div>
+<div class="description">Your registered account email</div>
+</div>
+<input class="control" value="demo@interviewiq.com" readonly>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Interview Preferences</h2>
+<div class="card-sub">Customize your practice experience</div>
+
+<div class="row">
+<div>
+<div class="label">Adaptive AI</div>
+<div class="description">Allow answers to influence future questions</div>
+</div>
+<div class="toggle"></div>
+</div>
+
+<div class="row">
+<div>
+<div class="label">AI Feedback</div>
+<div class="description">Receive detailed feedback after interviews</div>
+</div>
+<div class="toggle"></div>
+</div>
+
+<div class="row">
+<div>
+<div class="label">Difficulty</div>
+<div class="description">Default interview difficulty</div>
+</div>
+
+<select class="control">
+<option>Easy</option>
+<option selected>Medium</option>
+<option>Hard</option>
+</select>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<button class="save" onclick="saveSettings()">Save Changes</button>
+<span id="saved" class="saved">✓ Settings saved</span>
+
+</div>
+
+</main>
+
+</div>
+
+<script>
+function saveSettings(){
+    const saved = document.getElementById("saved");
+    saved.style.opacity = "1";
+
+    setTimeout(function(){
+        saved.style.opacity = "0";
+    },2500);
+}
+</script>
+
+</body>
+</html>
