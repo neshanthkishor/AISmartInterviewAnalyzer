@@ -100,6 +100,4 @@ http://127.0.0.1:8000/login.html
 | `/coach.html` | AI coaching feedback |
 | `/settings.html` | User settings |
 
-## License
 
-This project is licensed under the MIT License.
